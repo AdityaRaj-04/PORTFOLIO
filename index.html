@@ -29,7 +29,6 @@ body {
     backdrop-filter: blur(10px);
     padding: 15px;
     text-align: center;
-    z-index: 1000;
 }
 
 /* HERO */
@@ -52,17 +51,17 @@ body {
 .main-heading {
     font-size: 3.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #38bdf8, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    animation: fadeUp 1s ease forwards;
 }
 
 .sub-heading {
     margin-top: 10px;
     font-size: 1.4rem;
     color: #cbd5f5;
+    animation: fadeUp 1s ease 0.3s forwards;
 }
 
+/* BUTTON */
 .cta {
     margin-top: 25px;
     display: inline-block;
@@ -76,18 +75,14 @@ body {
 }
 
 .cta:hover {
-    transform: translateY(-3px);
+    transform: scale(1.08);
+    box-shadow: 0 10px 30px rgba(56,189,248,0.5);
 }
 
-/* SECTION */
+/* SECTIONS */
 section {
     padding: 80px 20px;
     text-align: center;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
 }
 
 /* SKILLS */
@@ -107,7 +102,7 @@ h2 {
 }
 
 .skill:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 /* PROJECTS */
@@ -125,16 +120,23 @@ h2 {
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(56,189,248,0.3);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(56,189,248,0.4);
 }
 
-/* CONTACT */
-.contact {
-    background: linear-gradient(135deg, #1e3a8a, #38bdf8);
-    padding: 50px;
+/* SCROLL ANIMATION */
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
 }
 
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+/* KEYFRAME */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -144,18 +146,6 @@ h2 {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.main-heading {
-    font-size: 3.5rem;
-    font-weight: 700;
-    animation: fadeUp 1s ease forwards;
-}
-
-.sub-heading {
-    font-size: 1.4rem;
-    margin-top: 10px;
-    animation: fadeUp 1s ease 0.3s forwards;
 }
 </style>
 </head>
@@ -174,50 +164,58 @@ h2 {
 </section>
 
 <!-- ABOUT -->
-<section>
+<section class="hidden">
     <h2>About Me</h2>
-    <p>I am a Business Analyst focused on transforming data into actionable insights. I specialize in dashboards, reporting, and helping businesses make smarter decisions.</p>
+    <p>I am a Business Analyst focused on transforming data into actionable insights and helping businesses make smarter decisions.</p>
 </section>
 
 <!-- SKILLS -->
-<section>
+<section class="hidden">
     <h2>Skills</h2>
     <div class="skills">
         <div class="skill">Power BI</div>
         <div class="skill">SQL</div>
-        <div class="skill">Excel</div>
-        <div class="skill">Tableau</div>
         <div class="skill">Data Analysis</div>
         <div class="skill">Business Insights</div>
     </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="hidden">
     <h2>Projects</h2>
     <div class="projects">
         <div class="card">
             <h3>Sales Dashboard</h3>
-            <p>Analyzed sales data to improve revenue by 20% using Power BI.</p>
+            <p>Improved revenue insights using Power BI.</p>
         </div>
-
         <div class="card">
             <h3>HR Analytics</h3>
-            <p>Built dashboard to reduce employee attrition.</p>
+            <p>Analyzed employee trends to reduce attrition.</p>
         </div>
-
         <div class="card">
             <h3>E-commerce Analysis</h3>
-            <p>Improved conversion rate using customer insights.</p>
+            <p>Boosted conversions through data insights.</p>
         </div>
     </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact">
+<section class="hidden">
     <h2>Contact</h2>
-    <p>Email: abhirsingh7@email.com</p>
+    <p>Email: your@email.com</p>
 </section>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+});
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
