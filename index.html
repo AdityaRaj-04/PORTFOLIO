@@ -11,8 +11,33 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #1e293b, #020617);
+    background: radial-gradient(circle at top, #0f172a, #020617);
     color: #e2e8f0;
+    overflow-x: hidden;
+}
+
+/* FLOATING BACKGROUND */
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(56,189,248,0.1);
+    animation: float 10s infinite ease-in-out;
+}
+
+.circle:nth-child(1){ width:200px; height:200px; top:10%; left:10%;}
+.circle:nth-child(2){ width:300px; height:300px; top:50%; left:70%;}
+.circle:nth-child(3){ width:150px; height:150px; top:80%; left:30%;}
+
+@keyframes float {
+    0%,100%{ transform: translateY(0);}
+    50%{ transform: translateY(-40px);}
 }
 
 /* HERO */
@@ -23,29 +48,40 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
+
 }
 
+/* HEADINGS */
 .main-heading {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     font-weight: 700;
-    animation: fadeUp 1s ease forwards;
 }
 
-.main-heading span {
-    color: #38bdf8;
+.cursor {
+    width: 3px;
+    background: white;
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
 }
 
 .sub-heading {
     margin-top: 15px;
     font-size: 1.3rem;
     color: #cbd5f5;
-    animation: fadeUp 1s ease 0.3s forwards;
+    animation: fade 2s infinite alternate;
+}
+
+@keyframes fade {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
 }
 
 /* BUTTON */
 .btn {
-    display: inline-block;
     margin-top: 25px;
     padding: 12px 25px;
     background: linear-gradient(135deg, #38bdf8, #6366f1);
@@ -57,12 +93,6 @@ body {
 
 .btn:hover {
     transform: scale(1.05);
-}
-
-/* ANIMATION */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px);}
-    to { opacity: 1; transform: translateY(0);}
 }
 
 /* SECTION */
@@ -93,6 +123,7 @@ section {
     background: rgba(255,255,255,0.05);
     padding: 15px 25px;
     border-radius: 10px;
+    backdrop-filter: blur(10px);
     transition: 0.3s;
 }
 
@@ -111,6 +142,7 @@ section {
     background: rgba(255,255,255,0.05);
     padding: 20px;
     border-radius: 15px;
+    backdrop-filter: blur(10px);
     transition: 0.3s;
 }
 
@@ -119,26 +151,40 @@ section {
     box-shadow: 0 10px 30px rgba(56,189,248,0.3);
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px;
-    color: #94a3b8;
+/* CONTACT */
+.contact {
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+}
+
+.contact a {
+    color: #38bdf8;
+    text-decoration: none;
 }
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
+<div class="bg">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
     <h1 class="main-heading">
-        Business Analyst <br>
-        <span>Driving Decisions Through Data</span>
+        <span id="typing"></span><span class="cursor"></span>
     </h1>
 
     <p class="sub-heading">
-        I turn complex data into actionable insights using Power BI, SQL & Analytics.
+        Turning Data Into Business Decisions
     </p>
 
     <a href="#projects" class="btn">View My Work</a>
@@ -161,36 +207,59 @@ footer {
     <div class="projects">
         <div class="card">
             <h3>Sales Dashboard</h3>
-            <p>Built using Power BI to track revenue trends and improve forecasting accuracy.</p>
+            <p>Power BI dashboard to track revenue and improve forecasting.</p>
         </div>
 
         <div class="card">
             <h3>HR Analytics</h3>
-            <p>Analyzed employee data to reduce attrition and improve workforce planning.</p>
+            <p>Reduced attrition using employee performance insights.</p>
         </div>
 
         <div class="card">
             <h3>E-commerce Analysis</h3>
-            <p>Optimized customer journey and increased conversion rates through data insights.</p>
+            <p>Improved conversions with customer behavior data.</p>
         </div>
     </div>
 </section>
 
-<!-- ABOUT (LAST) -->
+<!-- ABOUT -->
 <section class="hidden">
     <h2>About Me</h2>
     <p style="max-width:600px; margin:auto;">
-        I am a passionate Business Analyst with strong expertise in Power BI, SQL, and data analytics. 
-        I help businesses make smarter decisions by turning raw data into meaningful insights.
+        I am a Business Analyst specializing in Power BI, SQL, and data analytics. 
+        I help businesses make smarter decisions using data-driven insights.
     </p>
 </section>
 
-<!-- FOOTER -->
-<footer>
-    © 2026 Business Analyst Portfolio
-</footer>
+<!-- CONTACT -->
+<section class="hidden">
+    <h2>Contact Me</h2>
+    <div class="contact">
+        <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+        <p>LinkedIn: <a href="#">Your Profile</a></p>
+    </div>
+</section>
 
 <script>
+// TYPING LOOP
+const text = "Business Analyst";
+let i = 0;
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 100);
+    } else {
+        setTimeout(() => {
+            document.getElementById("typing").innerHTML = "";
+            i = 0;
+            typing();
+        }, 1500);
+    }
+}
+typing();
+
 // SCROLL ANIMATION
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -199,7 +268,6 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 });
-
 document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
 </script>
 
