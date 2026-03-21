@@ -11,7 +11,7 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: #0f172a;
+    background: radial-gradient(circle at top, #1e293b, #020617);
     color: #e2e8f0;
 }
 
@@ -19,78 +19,50 @@ body {
 .hero {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    padding: 0 20px;
+    text-align: center;
+    padding: 20px;
 }
 
-/* TEXT */
-.hero-text {
-    max-width: 450px;
-}
-
-/* HEADING */
 .main-heading {
     font-size: 3.5rem;
     font-weight: 700;
+    animation: fadeUp 1s ease forwards;
 }
 
-/* SUB */
+.main-heading span {
+    color: #38bdf8;
+}
+
 .sub-heading {
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 1.3rem;
     color: #cbd5f5;
-    animation: fade 2s infinite alternate;
+    animation: fadeUp 1s ease 0.3s forwards;
 }
 
-@keyframes fade {
-    from { opacity: 0.6; }
-    to { opacity: 1; }
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* ROBOT */
-.robot {
-    width: 200px;
-    height: 240px;
-    background: linear-gradient(145deg, #1e293b, #334155);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    position: relative;
+.btn:hover {
+    transform: scale(1.05);
 }
 
-/* HEAD */
-.robot-head {
-    width: 130px;
-    height: 90px;
-    background: linear-gradient(145deg, #38bdf8, #1e3a8a);
-    border-radius: 15px;
-    position: absolute;
-    top: 30px;
-    left: 35px;
-}
-
-/* EYES */
-.eye {
-    width: 28px;
-    height: 28px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 25px;
-}
-
-.eye.left { left: 20px; }
-.eye.right { right: 20px; }
-
-.pupil {
-    width: 10px;
-    height: 10px;
-    background: black;
-    border-radius: 50%;
-    position: absolute;
-    top: 9px;
-    left: 9px;
+/* ANIMATION */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 /* SECTION */
@@ -99,7 +71,6 @@ section {
     text-align: center;
 }
 
-/* SCROLL ANIMATION */
 .hidden {
     opacity: 0;
     transform: translateY(40px);
@@ -117,12 +88,14 @@ section {
     gap: 20px;
     flex-wrap: wrap;
 }
+
 .skill {
     background: rgba(255,255,255,0.05);
     padding: 15px 25px;
     border-radius: 10px;
     transition: 0.3s;
 }
+
 .skill:hover {
     transform: translateY(-5px) scale(1.05);
 }
@@ -133,15 +106,24 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap: 20px;
 }
+
 .card {
     background: rgba(255,255,255,0.05);
     padding: 20px;
     border-radius: 15px;
     transition: 0.3s;
 }
+
 .card:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 10px 30px rgba(56,189,248,0.3);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
 }
 </style>
 </head>
@@ -150,70 +132,65 @@ section {
 
 <!-- HERO -->
 <div class="hero">
+    <h1 class="main-heading">
+        Business Analyst <br>
+        <span>Driving Decisions Through Data</span>
+    </h1>
 
-    <!-- ROBOT LEFT -->
-    <div class="robot">
-        <div class="robot-head">
-            <div class="eye left"><div class="pupil"></div></div>
-            <div class="eye right"><div class="pupil"></div></div>
-        </div>
-    </div>
+    <p class="sub-heading">
+        I turn complex data into actionable insights using Power BI, SQL & Analytics.
+    </p>
 
-    <!-- TEXT RIGHT -->
-    <div class="hero-text">
-        <h1 class="main-heading" id="typing"></h1>
-        <p class="sub-heading">Turning Data Into Business Decisions</p>
-    </div>
-
+    <a href="#projects" class="btn">View My Work</a>
 </div>
 
 <!-- SKILLS -->
 <section class="hidden">
     <h2>Skills</h2>
     <div class="skills">
-        <div class="skill">Power BI</div>
-        <div class="skill">SQL</div>
-        <div class="skill">Data Analysis</div>
-        <div class="skill">Business Insights</div>
+        <div class="skill">📊 Power BI</div>
+        <div class="skill">🗄 SQL</div>
+        <div class="skill">🐍 Python</div>
+        <div class="skill">📈 Data Analysis</div>
     </div>
 </section>
 
 <!-- PROJECTS -->
-<section class="hidden">
+<section id="projects" class="hidden">
     <h2>Projects</h2>
     <div class="projects">
-        <div class="card">Sales Dashboard</div>
-        <div class="card">HR Analytics</div>
-        <div class="card">E-commerce Analysis</div>
+        <div class="card">
+            <h3>Sales Dashboard</h3>
+            <p>Built using Power BI to track revenue trends and improve forecasting accuracy.</p>
+        </div>
+
+        <div class="card">
+            <h3>HR Analytics</h3>
+            <p>Analyzed employee data to reduce attrition and improve workforce planning.</p>
+        </div>
+
+        <div class="card">
+            <h3>E-commerce Analysis</h3>
+            <p>Optimized customer journey and increased conversion rates through data insights.</p>
+        </div>
     </div>
 </section>
 
 <!-- ABOUT (LAST) -->
 <section class="hidden">
     <h2>About Me</h2>
-    <p>I am a Business Analyst skilled in Power BI, SQL, and data-driven decision making.</p>
+    <p style="max-width:600px; margin:auto;">
+        I am a passionate Business Analyst with strong expertise in Power BI, SQL, and data analytics. 
+        I help businesses make smarter decisions by turning raw data into meaningful insights.
+    </p>
 </section>
 
+<!-- FOOTER -->
+<footer>
+    © 2026 Business Analyst Portfolio
+</footer>
+
 <script>
-// TYPING LOOP
-const text = "Business Analyst";
-let i = 0;
-
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 100);
-    } else {
-        setTimeout(() => {
-            document.getElementById("typing").innerHTML = "";
-            i = 0;
-            typing();
-        }, 1500);
-    }
-}
-typing();
-
 // SCROLL ANIMATION
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -222,25 +199,8 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 });
+
 document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
-
-// EYE FOLLOW
-const pupils = document.querySelectorAll(".pupil");
-
-document.addEventListener("mousemove", (e) => {
-    pupils.forEach(pupil => {
-        const rect = pupil.parentElement.getBoundingClientRect();
-        const x = rect.left + rect.width / 2;
-        const y = rect.top + rect.height / 2;
-
-        const angle = Math.atan2(e.clientY - y, e.clientX - x);
-
-        const moveX = Math.cos(angle) * 6;
-        const moveY = Math.sin(angle) * 6;
-
-        pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    });
-});
 </script>
 
 </body>
