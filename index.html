@@ -5,126 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Business Analyst Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
     background: #0f172a;
-    color: #e2e8f0;
-}
-
-/* NAVBAR */
-.navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    text-align: center;
-}
-
-/* HERO */
-.hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #0f172a, #1e3a8a, #38bdf8);
-}
-
-.hero-box {
-    background: rgba(255,255,255,0.05);
-    padding: 40px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.main-heading {
-    font-size: 3.5rem;
-    font-weight: 700;
-    animation: fadeUp 1s ease forwards;
-}
-
-.sub-heading {
-    margin-top: 10px;
-    font-size: 1.4rem;
-    color: #cbd5f5;
-    animation: fadeUp 1s ease 0.3s forwards;
-}
-
-/* BUTTON */
-.cta {
-    margin-top: 25px;
-    display: inline-block;
-    padding: 12px 25px;
-    background: linear-gradient(135deg, #38bdf8, #6366f1);
-    border-radius: 30px;
-    text-decoration: none;
     color: white;
-    font-weight: 600;
-    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
 }
 
-.cta:hover {
-    transform: scale(1.08);
-    box-shadow: 0 10px 30px rgba(56,189,248,0.5);
+/* HERO TEXT */
+#text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+    z-index: 10;
 }
 
-/* SECTIONS */
+h1 {
+    font-size: 3rem;
+}
+
+/* Typing cursor effect */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background: white;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* SUB HEADING */
+.sub {
+    color: #cbd5f5;
+    margin-top: 10px;
+    animation: fadeUp 2s ease infinite alternate;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeUp {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+/* SCROLL SECTION */
 section {
     padding: 80px 20px;
     text-align: center;
 }
 
-/* SKILLS */
-.skills {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.skill {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 15px;
-    width: 150px;
-    transition: 0.3s;
-}
-
-.skill:hover {
-    transform: translateY(-8px);
-}
-
-/* PROJECTS */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 15px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(56,189,248,0.4);
-}
-
-/* SCROLL ANIMATION */
 .hidden {
     opacity: 0;
     transform: translateY(40px);
@@ -133,79 +70,100 @@ section {
 .show {
     opacity: 1;
     transform: translateY(0);
-    transition: all 0.8s ease;
+    transition: 0.8s;
 }
 
-/* KEYFRAME */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* CARDS */
+.card {
+    background: rgba(255,255,255,0.05);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
-<div class="navbar">Business Analyst Portfolio</div>
+<!-- TEXT -->
+<div id="text">
+    <h1><span id="typing"></span><span class="cursor"></span></h1>
+    <p class="sub">Turning Data Into Business Decisions</p>
+</div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-box">
-        <h1 class="main-heading">Business Analyst</h1>
-        <p class="sub-heading">Turning Data Into Business Decisions</p>
-        <a href="#projects" class="cta">View My Work</a>
-    </div>
-</section>
-
-<!-- ABOUT -->
+<!-- PROJECT SECTION -->
 <section class="hidden">
-    <h2>About Me</h2>
-    <p>I am a Business Analyst focused on transforming data into actionable insights and helping businesses make smarter decisions.</p>
-</section>
-
-<!-- SKILLS -->
-<section class="hidden">
-    <h2>Skills</h2>
-    <div class="skills">
-        <div class="skill">Power BI</div>
-        <div class="skill">SQL</div>
-        <div class="skill">Data Analysis</div>
-        <div class="skill">Business Insights</div>
-    </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="hidden">
     <h2>Projects</h2>
-    <div class="projects">
-        <div class="card">
-            <h3>Sales Dashboard</h3>
-            <p>Improved revenue insights using Power BI.</p>
-        </div>
-        <div class="card">
-            <h3>HR Analytics</h3>
-            <p>Analyzed employee trends to reduce attrition.</p>
-        </div>
-        <div class="card">
-            <h3>E-commerce Analysis</h3>
-            <p>Boosted conversions through data insights.</p>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section class="hidden">
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
+    <div class="card">Sales Dashboard</div>
+    <div class="card">HR Analytics</div>
+    <div class="card">E-commerce Analysis</div>
 </section>
 
 <script>
+// ------------------ THREE JS ------------------
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 3;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// LIGHT
+const light = new THREE.PointLight(0xffffff, 1);
+light.position.set(5,5,5);
+scene.add(light);
+
+// HEAD
+const geometry = new THREE.SphereGeometry(1, 32, 32);
+const material = new THREE.MeshStandardMaterial({ color: 0x38bdf8 });
+const head = new THREE.Mesh(geometry, material);
+scene.add(head);
+
+// CURSOR FOLLOW
+document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth) * 2 - 1;
+    const y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+    head.rotation.y = x;
+    head.rotation.x = y;
+});
+
+// LOOP
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+animate();
+
+// ------------------ TYPING LOOP ------------------
+const text = "Business Analyst";
+let i = 0;
+
+function typingEffect() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typingEffect, 100);
+    } else {
+        setTimeout(() => {
+            document.getElementById("typing").innerHTML = "";
+            i = 0;
+            typingEffect();
+        }, 1500);
+    }
+}
+
+typingEffect();
+
+// ------------------ SCROLL ANIMATION ------------------
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -215,6 +173,13 @@ const observer = new IntersectionObserver(entries => {
 });
 
 document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+// RESIZE
+window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
 </script>
 
 </body>
