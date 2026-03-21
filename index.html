@@ -10,10 +10,10 @@
 <style>
 body {
     margin: 0;
-    overflow-x: hidden;
     background: #0f172a;
     color: white;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 
 /* HERO TEXT */
@@ -30,12 +30,10 @@ h1 {
     font-size: 3rem;
 }
 
-/* Typing cursor effect */
 .cursor {
-    display: inline-block;
     width: 3px;
     background: white;
-    margin-left: 5px;
+    display: inline-block;
     animation: blink 1s infinite;
 }
 
@@ -43,20 +41,18 @@ h1 {
     50% { opacity: 0; }
 }
 
-/* SUB HEADING */
 .sub {
     color: #cbd5f5;
     margin-top: 10px;
-    animation: fadeUp 2s ease infinite alternate;
+    animation: fadeUp 2s infinite alternate;
 }
 
-/* FADE ANIMATION */
 @keyframes fadeUp {
     from { opacity: 0.6; }
     to { opacity: 1; }
 }
 
-/* SCROLL SECTION */
+/* SECTION */
 section {
     padding: 80px 20px;
     text-align: center;
@@ -73,7 +69,32 @@ section {
     transition: 0.8s;
 }
 
-/* CARDS */
+/* ABOUT */
+.about {
+    max-width: 700px;
+    margin: auto;
+}
+
+/* SKILLS */
+.skills {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.skill {
+    background: rgba(255,255,255,0.05);
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.skill:hover {
+    transform: scale(1.1);
+}
+
+/* PROJECTS */
 .card {
     background: rgba(255,255,255,0.05);
     margin: 20px;
@@ -92,13 +113,33 @@ section {
 
 <body>
 
-<!-- TEXT -->
+<!-- HERO -->
 <div id="text">
     <h1><span id="typing"></span><span class="cursor"></span></h1>
     <p class="sub">Turning Data Into Business Decisions</p>
 </div>
 
-<!-- PROJECT SECTION -->
+<!-- ABOUT -->
+<section class="hidden">
+    <h2>About Me</h2>
+    <p class="about">
+        I am a Business Analyst who transforms data into actionable insights.
+        I specialize in Power BI, SQL, and data-driven decision making to help businesses grow.
+    </p>
+</section>
+
+<!-- SKILLS -->
+<section class="hidden">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill">Power BI</div>
+        <div class="skill">SQL</div>
+        <div class="skill">Data Analysis</div>
+        <div class="skill">Business Insights</div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
 <section class="hidden">
     <h2>Projects</h2>
     <div class="card">Sales Dashboard</div>
@@ -107,7 +148,7 @@ section {
 </section>
 
 <script>
-// ------------------ THREE JS ------------------
+// THREE JS
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 camera.position.z = 3;
@@ -116,18 +157,15 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// LIGHT
 const light = new THREE.PointLight(0xffffff, 1);
 light.position.set(5,5,5);
 scene.add(light);
 
-// HEAD
 const geometry = new THREE.SphereGeometry(1, 32, 32);
 const material = new THREE.MeshStandardMaterial({ color: 0x38bdf8 });
 const head = new THREE.Mesh(geometry, material);
 scene.add(head);
 
-// CURSOR FOLLOW
 document.addEventListener("mousemove", (e) => {
     const x = (e.clientX / window.innerWidth) * 2 - 1;
     const y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -136,14 +174,13 @@ document.addEventListener("mousemove", (e) => {
     head.rotation.x = y;
 });
 
-// LOOP
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 animate();
 
-// ------------------ TYPING LOOP ------------------
+// TYPING
 const text = "Business Analyst";
 let i = 0;
 
@@ -160,10 +197,9 @@ function typingEffect() {
         }, 1500);
     }
 }
-
 typingEffect();
 
-// ------------------ SCROLL ANIMATION ------------------
+// SCROLL
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
